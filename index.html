@@ -13,6 +13,16 @@
 
     <link rel="stylesheet" href="/src/style.css" />
     <title>PH Tube</title>
+
+    <style>
+      .active-btn {
+        background-color: #ff1f3d;
+        color: white;
+      }
+      .active-btn:hover {
+        background-color: #ff1f3d;
+      }
+    </style>
   </head>
   <body class="font-inter">
     <header class="container mx-auto pt-5 pb-3 border-b-2">
@@ -22,9 +32,11 @@
         </div>
         <li class="navbar-center">
           <a
-            onclick="sortByView()"
+            id="sort-view-btn"
+            onclick="sortByView(this)"
             class="btn btn-xs sm:btn-sm md:btn-md normal-case bg-[#25252533]"
-            >Sort by view</a
+          >
+            Sort by view</a
           >
         </li>
         <div class="navbar-end">

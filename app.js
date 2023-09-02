@@ -10,15 +10,31 @@ loadData();
 
 const createCategories = (categories) => {
   const categoriesSection = document.getElementById("category-section");
+  let count = 0;
   categories.forEach((category) => {
     const div = document.createElement("div");
     div.innerHTML = `
-    <button onclick="getCategoryDetails('${category.category_id}')" class="btn btn-xs sm:btn-sm md:btn-md normal-case bg-[#25252533]">
+    <button onclick="getCategoryDetails('${category.category_id}'); activeBtn(event)" id="first" class="btn btn-xs sm:btn-sm md:btn-md normal-case bg-[#25252533]">
     ${category.category}
     </button>
     `;
+
     categoriesSection.appendChild(div);
   });
+  defaultActiveBtn();
+};
+
+const defaultActiveBtn = () => {
+  const defaultActiveBtn = document.querySelector("#first");
+  defaultActiveBtn.classList.add("active-btn");
+};
+
+const activeBtn = (event) => {
+  const categoryBtn = document.querySelectorAll(".btn");
+  categoryBtn.forEach((eachBtn) => {
+    eachBtn.classList.remove("active-btn");
+  });
+  event.target.classList.add("active-btn");
 };
 
 let categoryDetailsArray;
@@ -33,7 +49,8 @@ const getCategoryDetails = async (id) => {
   showCategoryDetails(categoryDetailsArray);
 };
 
-const sortByView = () => {
+const sortByView = (event) => {
+  event.classList.add("active-btn");
   categoryDetailsArray.sort((item1, item2) => {
     let view1 = item1.others.views.split("");
     view1.pop();
@@ -64,7 +81,6 @@ const showCategoryDetails = (details) => {
     showCategoryField.appendChild(noData);
   } else {
     details.forEach((detail) => {
-      // console.log(detail.thumbnail);
       const card = document.createElement("div");
       let timeArr = calculatePostedTime(detail.others.posted_date);
       let [hrs, min] = timeArr;
