@@ -21,14 +21,27 @@ const createCategories = (categories) => {
   });
 };
 
+let categoryDetailsArray;
 const getCategoryDetails = async (id) => {
   toggleLoadingSpinner(true);
   const res = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${id}`
   );
   const categoryData = await res.json();
-  console.log(categoryData);
-  showCategoryDetails(categoryData.data);
+  // console.log(categoryData);
+  categoryDetailsArray = categoryData.data;
+  showCategoryDetails(categoryDetailsArray);
+};
+
+const sortByView = () => {
+  categoryDetailsArray.sort((item1, item2) => {
+    let view1 = item1.others.views.split("");
+    view1.pop();
+    let view2 = item2.others.views.split("");
+    view2.pop();
+    return parseFloat(view2.join("")) - parseFloat(view1.join(""));
+  });
+  showCategoryDetails(categoryDetailsArray);
 };
 
 const showCategoryDetails = (details) => {
@@ -121,4 +134,4 @@ const toggleLoadingSpinner = (isLoading) => {
   }
 };
 
-// getCategoryDetails("1000");
+getCategoryDetails("1000");
