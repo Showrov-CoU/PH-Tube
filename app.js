@@ -86,35 +86,36 @@ const showCategoryDetails = (details) => {
       let [hrs, min] = timeArr;
       card.classList = `card card-compact rounded-lg`;
       card.innerHTML = `
-    <figure class="h-40 relative">
-      <img class="rounded-lg w-full h-full" src=${
-        detail.thumbnail
-      } alt="video" />
-      <div id="posted-date" class="rounded-md absolute bg-[#09090b] bottom-3 right-3 text-white text-sm px-2 py-1">${
-        timeArr.length ? hrs + " hrs" + " " + min + " min" : "just now"
-      }</div>
-    </figure>
-    <div class="flex gap-2 py-5">
-    <div class="h-9 w-9 ">
-        <img class="h-full w-full rounded-full" src=${
-          detail.authors[0].profile_picture
-        } alt="" />
-    </div>
-    <div class="flex-grow">
-        <h2 class="text-md font-semibold">${detail.title}</h2>
-        <div class="flex items-center gap-2">
+        <figure class="h-40 relative">
+          <img class="rounded-lg w-full h-full" src=${
+            detail.thumbnail
+          } alt="video" />
+          <div id="posted-date" class="rounded-md absolute bg-[#09090b] bottom-3 right-3 text-white text-sm px-2 py-1">${
+            timeArr.length ? hrs + " hrs" + " " + min + " min" : "just now"
+          }</div>
+        </figure>
+        <div class="flex gap-2 py-5">
+          <div class="h-9 w-9 ">
+            <img class="h-full w-full rounded-full" src=${
+              detail.authors[0].profile_picture
+            } alt="" />
+          </div>
+          <div class="flex-grow">
+           <h2 class="text-md font-semibold">${detail.title}</h2>
+           <div class="flex items-center gap-2">
             <p class="text-sm">${detail.authors[0].profile_name}</p>
-            <div class="w-4">
+            <div id="verify" class="w-4">
                 <img class="w-full" src="verify.png" alt="" />
             </div>
+            </div>
+            <p class="text-sm">${detail.others.views}</p>
+          </div>
         </div>
-        <p class="text-sm">${detail.others.views}</p>
-    </div>
-    </div>
-    `;
+      `;
       showCategoryField.appendChild(card);
     });
   }
+
   toggleLoadingSpinner(false);
 };
 
@@ -153,6 +154,5 @@ const toggleLoadingSpinner = (isLoading) => {
 getCategoryDetails("1000");
 
 const blog = () => {
-  // location.href = "http://127.0.0.1:5500/blog.html";
   window.open("http://127.0.0.1:5500/blog.html", "_blank");
 };
