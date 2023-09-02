@@ -151,3 +151,8 @@ const toggleLoadingSpinner = (isLoading) => {
 };
 
 getCategoryDetails("1000");
+
+const blog = () => {
+  // location.href = "http://127.0.0.1:5500/blog.html";
+  window.open("http://127.0.0.1:5500/blog.html", "_blank");
+};
